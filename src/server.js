@@ -22,7 +22,7 @@ app.post("/postData", (req, res) => {
   data.lastName = req.body.lastName;
   data.emailAddress = req.body.emailAddress;
   console.log(req.body);
-  res.send("Successfully created");
+  res.send("User Data updated successfully!");
 });
 
 app.listen(8000, () => {

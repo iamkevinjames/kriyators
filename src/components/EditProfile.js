@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { userDataContext } from "../context/userDataContext";
 import {
   Typography,
@@ -16,25 +16,40 @@ import axios from "axios";
 
 function EditProfile() {
   const { data, setData, load, setLoad } = useContext(userDataContext);
+  const [currentData, setCurrentData] = useState({});
+
   const handleChange = (event) => {
     let changedField = event.target.id;
-    if (changedField === "firstName")
+    if (changedField === "firstName") {
+      setCurrentData({ ...currentData, firstName: event.target.value });
       setData({ ...data, firstName: event.target.value });
-    if (changedField === "lastName")
+    }
+    if (changedField === "lastName") {
+      setCurrentData({ ...currentData, lastName: event.target.value });
       setData({ ...data, lastName: event.target.value });
-    if (changedField === "emailAddress")
+    }
+    if (changedField === "emailAddress") {
+      setCurrentData({ ...currentData, emailAddress: event.target.value });
       setData({ ...data, emailAddress: event.target.value });
+    }
   };
-
-  const clearData = () => {};
 
   const resetData = () => {
     setLoad(!load);
-    clearData();
+    setCurrentData({});
   };
   const saveData = () => {
+    currentData.firstName = currentData.firstName
+      ? currentData.firstName
+      : data.firstName;
+    currentData.lastName = currentData.lastName
+      ? currentData.lastName
+      : data.lastName;
+    currentData.emailAddress = currentData.emailAddress
+      ? currentData.emailAddress
+      : data.emailAddress;
     axios
-      .post("http://localhost:8000/postData", data)
+      .post("http://localhost:8000/postData", currentData)
       .then((response) => {
         console.log(response);
         setLoad(!load);
@@ -42,6 +57,7 @@ function EditProfile() {
       .catch((error) => {
         console.log(error);
       });
+    setCurrentData({});
   };
   return (
     <div
@@ -62,8 +78,8 @@ function EditProfile() {
             sx={{ m: 2, width: "300px" }}
             id="firstName"
             label="First Name"
-            value={data?.firstName}
             variant="outlined"
+            value={currentData.firstName ? currentData.firstName : ""}
             onChange={handleChange}
             InputLabelProps={{
               shrink: true,
@@ -81,9 +97,9 @@ function EditProfile() {
             sx={{ m: 2, width: "300px" }}
             id="lastName"
             label="Last Name"
-            value={data?.lastName}
             onChange={handleChange}
             variant="outlined"
+            value={currentData.lastName ? currentData.lastName : ""}
             InputLabelProps={{
               shrink: true,
             }}
@@ -115,8 +131,8 @@ function EditProfile() {
             sx={{ m: 2, width: "300px" }}
             id="emailAddress"
             label="Email"
-            value={data?.emailAddress}
             variant="outlined"
+            value={currentData.emailAddress ? currentData.emailAddress : ""}
             onChange={handleChange}
             InputLabelProps={{
               shrink: true,
