@@ -49,7 +49,10 @@ function EditProfile() {
       ? currentData.emailAddress
       : data.emailAddress;
     axios
-      .post("http://localhost:8000/postData", currentData)
+      .patch(
+        "http://localhost:8000/userData/632ebe9f04faccbf2962425a",
+        currentData
+      )
       .then((response) => {
         console.log(response);
         setLoad(!load);
@@ -65,7 +68,6 @@ function EditProfile() {
         display: "flex",
         flexDirection: "column",
         padding: "40px",
-        float: "left",
       }}
     >
       <Typography variant="h6" style={{ marginBottom: "20px" }}>

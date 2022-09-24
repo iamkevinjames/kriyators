@@ -8,12 +8,10 @@ function ProfilePreview() {
   return (
     <Card
       style={{
-        width: "25%",
-        maxWidth: 350,
+        width: "30%",
         height: "88vh",
         backgroundColor: "rgba(0, 0, 0, 0.03)",
         boxShadow: "10px 0px 20px 0px  rgba(0, 0, 0, 0.05)",
-        float: "right",
         paddingLeft: "40px",
         display: "flex",
         flexDirection: "column",

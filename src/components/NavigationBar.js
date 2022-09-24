@@ -21,6 +21,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 function Navigationbar() {
   return (
     <Box
+      className="navigationbar"
       sx={{
         width: "25%",
         maxWidth: 250,

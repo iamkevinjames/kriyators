@@ -23,21 +23,25 @@ function App() {
   const [data, setData] = useState();
   const [load, setLoad] = useState(true);
   useEffect(() => {
-    axios.get("http://localhost:8000/getData").then((response) => {
-      setData(response.data);
-    });
+    axios
+      .get("http://localhost:8000/userData/632ebe9f04faccbf2962425a")
+      .then((response) => {
+        setData(response.data);
+      });
   }, [load]);
 
   return (
     <ThemeProvider theme={outerTheme}>
-      <div className="App">
-        <userDataContext.Provider value={{ data, setData, setLoad, load }}>
+      <userDataContext.Provider value={{ data, setData, setLoad, load }}>
+        <div className="App">
           <Navigationbar />
           <TopBar />
-          <EditProfile />
-          <ProfilePreview />
-        </userDataContext.Provider>
-      </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <EditProfile />
+            <ProfilePreview />
+          </div>
+        </div>
+      </userDataContext.Provider>
     </ThemeProvider>
   );
 }
