@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { userDataContext } from "./context/userDataContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Snackbar, Alert } from "@mui/material";
 
 function App() {
   const outerTheme = createTheme({
@@ -22,17 +23,32 @@ function App() {
 
   const [data, setData] = useState();
   const [load, setLoad] = useState(true);
+  const [toast, setToast] = useState({ isOpen: false, isSuccess: true });
   useEffect(() => {
     axios
-      .get("http://localhost:8000/userData/632ebe9f04faccbf2962425a")
+      .get(
+        "http://localhost:9000/.netlify/functions/api/632ed232fada00fb7a2dc6eb"
+      )
       .then((response) => {
         setData(response.data);
+      })
+      .catch((error) => {
+        setData();
       });
   }, [load]);
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setToast(false);
+  };
+
   return (
     <ThemeProvider theme={outerTheme}>
-      <userDataContext.Provider value={{ data, setData, setLoad, load }}>
+      <userDataContext.Provider
+        value={{ data, setData, setLoad, load, setToast }}
+      >
         <div className="App">
           <Navigationbar />
           <TopBar />
@@ -41,6 +57,18 @@ function App() {
             <ProfilePreview />
           </div>
         </div>
+        <Snackbar
+          open={toast.isOpen}
+          autoHideDuration={4000}
+          onClose={handleClose}
+          message="Updated Successfully"
+        >
+          {toast.isSuccess ? (
+            <Alert severity="success">Updated Successfully!</Alert>
+          ) : (
+            <Alert severity="error">Update Falied!</Alert>
+          )}
+        </Snackbar>
       </userDataContext.Provider>
     </ThemeProvider>
   );

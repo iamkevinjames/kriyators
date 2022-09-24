@@ -15,7 +15,8 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import axios from "axios";
 
 function EditProfile() {
-  const { data, setData, load, setLoad } = useContext(userDataContext);
+  const { data, setData, load, setLoad, setToast } =
+    useContext(userDataContext);
   const [currentData, setCurrentData] = useState({});
 
   const handleChange = (event) => {
@@ -39,28 +40,34 @@ function EditProfile() {
     setCurrentData({});
   };
   const saveData = () => {
-    currentData.firstName = currentData.firstName
-      ? currentData.firstName
-      : data.firstName;
-    currentData.lastName = currentData.lastName
-      ? currentData.lastName
-      : data.lastName;
-    currentData.emailAddress = currentData.emailAddress
-      ? currentData.emailAddress
-      : data.emailAddress;
-    axios
-      .patch(
-        "http://localhost:8000/userData/632ebe9f04faccbf2962425a",
-        currentData
-      )
-      .then((response) => {
-        console.log(response);
-        setLoad(!load);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    setCurrentData({});
+    if (Object.keys(currentData).length) {
+      currentData.firstName = currentData.firstName
+        ? currentData.firstName
+        : data.firstName;
+      currentData.lastName = currentData.lastName
+        ? currentData.lastName
+        : data.lastName;
+      currentData.emailAddress = currentData.emailAddress
+        ? currentData.emailAddress
+        : data.emailAddress;
+      axios
+        .patch(
+          "http://localhost:9000/.netlify/functions/api/632ed232fada00fb7a2dc6eb",
+          currentData
+        )
+        .then((response) => {
+          console.log(response);
+          setLoad(!load);
+          setToast({ isOpen: true, isSuccess: true });
+        })
+        .catch((error) => {
+          console.log(error);
+          setToast({ isOpen: true, isSuccess: false });
+        });
+      setCurrentData({});
+    } else {
+      setToast({ isOpen: true, isSuccess: false });
+    }
   };
   return (
     <div

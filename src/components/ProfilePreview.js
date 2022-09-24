@@ -50,9 +50,12 @@ function ProfilePreview() {
         variant="h6"
         style={{ fontWeight: "bold ", marginTop: "20px" }}
       >
-        {data?.firstName + " " + data?.lastName}
+        {(data && data.firstName ? data.firstName + " " : "Loading") +
+          (data && data.lastName ? data.lastName : "...")}
       </Typography>
-      <Typography>{data?.emailAddress}</Typography>
+      <Typography>
+        {data && data.emailAddress ? data.emailAddress : "Loading..."}
+      </Typography>
     </Card>
   );
 }

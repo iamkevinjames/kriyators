@@ -19,7 +19,7 @@ function TopBar() {
     >
       <div>
         <div style={{ fontWeight: "bold " }}>
-          Good Morning, {data?.firstName}
+          Good Morning, {data && data.firstName ? data.firstName : "Loading..."}
         </div>
         <div id="currentDate">
           {date.toLocaleDateString("en-us", {
@@ -44,7 +44,9 @@ function TopBar() {
         />
         <div style={{ display: "flex", alignItems: "center" }}>
           <div>
-            <div style={{ fontWeight: "bold " }}>{data?.firstName}</div>
+            <div style={{ fontWeight: "bold " }}>
+              {data && data.firstName ? data.firstName : "Loading..."}
+            </div>
             <div>Russian President</div>
           </div>
           <KeyboardArrowDownIcon />
