@@ -26,9 +26,7 @@ function App() {
   const [toast, setToast] = useState({ isOpen: false, isSuccess: true });
   useEffect(() => {
     axios
-      .get(
-        "http://localhost:9000/.netlify/functions/api/632ed232fada00fb7a2dc6eb"
-      )
+      .get("https://kyro-api.herokuapp.com/user/getData")
       .then((response) => {
         setData(response.data);
       })

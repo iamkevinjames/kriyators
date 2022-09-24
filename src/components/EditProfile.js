@@ -51,10 +51,7 @@ function EditProfile() {
         ? currentData.emailAddress
         : data.emailAddress;
       axios
-        .patch(
-          "http://localhost:9000/.netlify/functions/api/632ed232fada00fb7a2dc6eb",
-          currentData
-        )
+        .post("https://kyro-api.herokuapp.com/user/postData", currentData)
         .then((response) => {
           console.log(response);
           setLoad(!load);
