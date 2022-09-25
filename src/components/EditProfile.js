@@ -41,6 +41,15 @@ function EditProfile() {
   };
   const saveData = () => {
     if (Object.keys(currentData).length) {
+      let check = /^\S+@\S+\.\S+$/;
+
+      if (currentData.emailAddress && !check.test(currentData.emailAddress)) {
+        setLoad(!load);
+        setToast({ isOpen: true, isSuccess: false });
+        setCurrentData({ isValidEmail: false });
+        return;
+      }
+
       currentData.firstName = currentData.firstName
         ? currentData.firstName
         : data.firstName;
@@ -137,10 +146,17 @@ function EditProfile() {
               ),
             }}
           />
+
           <TextField
             sx={{ m: 2, width: "300px" }}
             id="emailAddress"
             label="Email"
+            error={currentData.isValidEmail === false}
+            helperText={
+              currentData.isValidEmail === false
+                ? "incorrect email address"
+                : ""
+            }
             variant="outlined"
             value={currentData.emailAddress ? currentData.emailAddress : ""}
             onChange={handleChange}
