@@ -39,7 +39,7 @@ function App() {
     if (reason === "clickaway") {
       return;
     }
-    setToast(false);
+    setToast({ isOpen: false, isSuccess: true });
   };
 
   return (

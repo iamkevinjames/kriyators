@@ -39,6 +39,7 @@ function EditProfile() {
     setLoad(!load);
     setCurrentData({});
   };
+
   const saveData = () => {
     if (Object.keys(currentData).length) {
       let check = /^\S+@\S+\.\S+$/;
