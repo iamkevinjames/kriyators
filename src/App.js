@@ -50,7 +50,10 @@ function App() {
         <div className="App">
           <Navigationbar />
           <TopBar />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <div
+            className="content"
+            style={{ display: "flex", justifyContent: "flex-end" }}
+          >
             <EditProfile />
             <ProfilePreview />
           </div>

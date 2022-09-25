@@ -68,6 +68,7 @@ function EditProfile() {
   };
   return (
     <div
+      className="edit"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -78,7 +79,10 @@ function EditProfile() {
         {" "}
         My Profile
       </Typography>
-      <Card style={{ padding: "20px", maxWidth: "700px", height: "64vh" }}>
+      <Card
+        className="edit-profile"
+        style={{ padding: "20px", maxWidth: "700px", height: "64vh" }}
+      >
         <div>
           <TextField
             sx={{ m: 2, width: "300px" }}

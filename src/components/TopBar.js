@@ -10,6 +10,7 @@ function TopBar() {
 
   return (
     <div
+      className="top-bar"
       style={{
         display: "flex",
         alignItems: "center",
@@ -17,7 +18,7 @@ function TopBar() {
         padding: "20px",
       }}
     >
-      <div>
+      <div className="greeting">
         <div style={{ fontWeight: "bold " }}>
           Good Morning, {data && data.firstName ? data.firstName : "Loading..."}
         </div>
@@ -29,7 +30,7 @@ function TopBar() {
           })}
         </div>
       </div>
-      <div style={{ display: "flex" }}>
+      <div className="profile" style={{ display: "flex" }}>
         <Button
           variant="contained"
           startIcon={<AddIcon />}
@@ -38,11 +39,15 @@ function TopBar() {
           ADD PROJECT
         </Button>
         <Avatar
+          className="profile-pic"
           style={{ marginRight: "15px" }}
           alt="Travis Howard"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0BgNn7YxMymvDaZD8m-k2LEbRCD3uQAMPAQ&usqp=CAU"
         />
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div
+          className="top-profile"
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <div>
             <div style={{ fontWeight: "bold " }}>
               {data && data.firstName ? data.firstName : "Loading..."}

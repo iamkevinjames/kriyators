@@ -7,8 +7,9 @@ function ProfilePreview() {
   const { data } = useContext(userDataContext);
   return (
     <Card
+      className="profile-preview"
       style={{
-        width: "30%",
+        width: "400px",
         height: "88vh",
         backgroundColor: "rgba(0, 0, 0, 0.03)",
         boxShadow: "10px 0px 20px 0px  rgba(0, 0, 0, 0.05)",

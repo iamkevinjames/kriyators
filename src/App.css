@@ -21,8 +21,73 @@
   color: var(--primary-color);
 }
 
+.profile-preview {
+  width: "400px";
+  height: "88vh";
+  background-color: "rgba(0, 0, 0, 0.03)";
+  box-shadow: "10px 0px 20px 0px  rgba(0, 0, 0, 0.05)";
+  padding-left: "40px";
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+}
+
+.profile-preview-pic {
+  width: "150px";
+  height: "150px";
+  margin-top: "100px";
+  border-radius: "15px";
+  background-image: "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0BgNn7YxMymvDaZD8m-k2LEbRCD3uQAMPAQ&usqp=CAU)";
+  background-size: "100% 100%";
+}
+
+.upload-icon {
+  width: "50px";
+  height: "50px";
+  position: "absolute";
+  top: "175px";
+  left: "125px";
+  border-radius: "10px";
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+}
+
 @media only screen and (max-width: 1000px) {
   .navigationbar {
     display: none;
+  }
+
+  .edit-profile {
+    overflow: auto !important;
+    text-align: center;
+  }
+
+  .top-bar {
+    flex-direction: column;
+  }
+
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .edit {
+    align-items: center;
+  }
+
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-pic {
+    display: none !important;
+  }
+
+  .greeting,
+  .top-profile {
+    text-align: center;
   }
 }
